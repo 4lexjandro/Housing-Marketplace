@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {toast} from 'react-toastify'
 import {Link, useNavigate} from 'react-router-dom'
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import {db} from '../firebase.config'
@@ -50,7 +51,8 @@ function SignUp() {
 
     }
     catch(error){
-      console.log(error)
+      
+      toast.error('Error With Regitration')
 
     }
   }
