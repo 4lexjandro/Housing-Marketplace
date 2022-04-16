@@ -4,6 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import {db} from '../firebase.config'
 import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
+import OAuth from '../components/OAuth'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import {setDoc, doc, serverTimestamp} from 'firebase/firestore'
 
@@ -108,8 +109,11 @@ function SignUp() {
                 height='34px' />
               </button>
           </div>
-          
         </form>
+        <OAuth />
+
+
+
         <Link to='/sign-in' className='registerLink'>
           Sign In Instead
         </Link>
