@@ -4,8 +4,9 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import {db} from '../firebase.config'
 import {v4 as uuidv4} from 'uuid'
 import {useNavigate} from 'react-router-dom'
-import Spinner from '../components/Spinner'
 import {toast} from 'react-toastify'
+import Spinner from '../components/Spinner'
+
 
 
 
@@ -77,7 +78,7 @@ function CreateListing() {
 
 
 
-  const onSubmit = async (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault()
     setLoading(true)
 
@@ -102,10 +103,7 @@ function CreateListing() {
   
 
     if (geolocationEnabled) {
-
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
-      )
+const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
 
       const data = await response.json()
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0
@@ -117,7 +115,7 @@ function CreateListing() {
         : data.results[0]?.formatted_address
 
 
-        if (location === undefined || location.includes('undefined')) {
+        if (location===undefined||location.includes('undefined')) {
           setLoading(false)
           toast.error('Enter correct address')
           return
@@ -128,23 +126,26 @@ function CreateListing() {
      {
       geolocation.lat = latitude
       geolocation.lng = longitude 
+      location = address
       
        }
 
-       //Store images in firease
+       //Store image in firebase
        const storeImage = async (image) => {
-         return new Promise((resolve, reject) => {
-        const storage = getStorage()
-        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+        return new Promise((resolve, reject) => {
+          const storage = getStorage()
+          const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
 
 
         const storageRef = ref(storage, 'images/' + fileName)
         const uploadTask = uploadBytesResumable(storageRef, image)
 
-        uploadTask.on('state_changed', 
+        uploadTask.on(
+        'state_changed', 
        (snapshot) => {
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
+    const progress = 
+    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -165,9 +166,10 @@ function CreateListing() {
     })
   }
 )
-
 })
 }
+
+
 
 
 
@@ -179,7 +181,7 @@ function CreateListing() {
          return
        })
        console.log(imgUrls)
-       setLoading(false)
+  setLoading(false)
     
   }
 
