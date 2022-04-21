@@ -127,7 +127,7 @@ const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?
      {
       geolocation.lat = latitude
       geolocation.lng = longitude 
-      location = address
+      
       
        }
 
@@ -190,9 +190,10 @@ const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?
          timestamp: serverTimestamp()
        }
 
+
+      formDataCopy.location = address
        delete formDataCopy.images
        delete formDataCopy.address
-       location && (formDataCopy.location = location)
        !formDataCopy.offer && delete formDataCopy.discountedPrice
 
        const docRef = await addDoc(collection(db, 'listings'), formDataCopy)       
