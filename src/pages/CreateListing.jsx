@@ -2,6 +2,7 @@ import {useState, useEffect, useRef} from 'react'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {db} from '../firebase.config'
+import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import {v4 as uuidv4} from 'uuid'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
@@ -180,8 +181,24 @@ const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?
          toast.error('images not uploaded')
          return
        })
-       console.log(imgUrls)
-  setLoading(false)
+
+
+       const formDataCopy = {
+         ...formData,
+         imgUrls, 
+         geolocation,
+         timestamp: serverTimestamp()
+       }
+
+       delete formDataCopy.images
+       delete formDataCopy.address
+       location && (formDataCopy.location = location)
+       !formDataCopy.offer && delete formDataCopy.discountedPrice
+
+       const docRef = await addDoc(collection(db, 'listings'), formDataCopy)       
+       setLoading(false)
+       toast.success('Listing saved')
+       navigate(`/category/${formDataCopy.type}/${docRef.id}`)
     
   }
 
