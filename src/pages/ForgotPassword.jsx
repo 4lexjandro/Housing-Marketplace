@@ -19,7 +19,6 @@ function ForgotPassword() {
       toast.error('Could not send reset email')
     }
   }
-
   return (
     <div className='pageContainer'>
       <header>
