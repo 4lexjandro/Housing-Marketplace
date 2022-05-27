@@ -142,7 +142,6 @@ function Listing() {
 
         )}
       </div>
-      
     </main>
   )
 }
