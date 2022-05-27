@@ -113,7 +113,6 @@ function Profile() {
           Logout
         </button>
       </header>
-
       <main>
         <div className='profileDetailsHeader'>
           <p className='profileDetailsText'>Personal Details</p>

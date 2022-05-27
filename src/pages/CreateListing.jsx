@@ -146,8 +146,6 @@ function CreateListing() {
             reject(error)
           },
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               resolve(downloadURL)
             })
@@ -218,7 +216,6 @@ function CreateListing() {
       <header>
         <p className='pageHeader'>Create a Listing</p>
       </header>
-
       <main>
         <form onSubmit={onSubmit}>
           <label className='formLabel'>Sell / Rent</label>
