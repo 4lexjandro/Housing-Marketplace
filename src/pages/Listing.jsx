@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import 'swiper/swiper-bundle.css'
 
 import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
@@ -139,7 +139,6 @@ function Listing() {
           >
             Contact Landlord
           </Link>
-
         )}
       </div>
     </main>
