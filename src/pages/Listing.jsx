@@ -139,8 +139,10 @@ function Listing() {
           >
             Contact Landlord
           </Link>
+
         )}
       </div>
+      
     </main>
   )
 }

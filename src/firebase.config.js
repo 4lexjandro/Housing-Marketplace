@@ -5,7 +5,7 @@ import {getFirestore} from 'firebase/firestore'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAB6U-SGO-0ktGgUu3CIHpk5KhCzXmfdQM",
+  apiKey: "AIzaSyCkQwB32VqFaPfRSisduAgzzH5A3OvVIXo",
   authDomain: "house-marketplace-app-c44d1.firebaseapp.com",
   projectId: "house-marketplace-app-c44d1",
   storageBucket: "house-marketplace-app-c44d1.appspot.com",
